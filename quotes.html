@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quotes & Affirmations</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--bg, #f8e0e0);
+      color: var(--text, #4a154b);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #6a0572;
+      text-align: center;
+    }
+
+    .quote-card {
+      background-color: #fff0f6;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      text-align: center;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .new-quote-btn, .add-btn {
+      background-color: #ff758c;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 0.5rem;
+    }
+
+    .new-quote-btn:hover, .add-btn:hover {
+      background-color: #ff5c8a;
+    }
+
+    .form-container {
+      margin: 2rem 0 1rem;
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 700px;
+      height: 150px;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 2px solid #6a0572;
+      resize: none;
+      font-size: 1rem;
+    }
+
+    .user-affirmations {
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .affirmation-card {
+      background-color: #ffe3ec;
+      padding: 1rem;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .affirmation-date {
+      font-size: 0.8rem;
+      color: #777;
+      text-align: right;
+      margin-top: 0.4rem;
+    }
+
+    button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none;
+}
+
+.affirmation-card button {
+  background-color: #ffb3c6;
+  color: #4a154b;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.affirmation-card button:hover {
+  background-color: #ff85a2;
+}
+
+.affirmation-card button:nth-child(3) {
+  background-color: #ffcccb;
+  color: #b41c1c;
+}
+
+.affirmation-card button:nth-child(3):hover {
+  background-color: #ff4d4d;
+}
+
+.affirmation-card button:nth-child(2) {
+  background-color: #a0d0ff;
+  color: #003366;
+}
+
+.affirmation-card button:nth-child(2):hover {
+  background-color: #3da1f4;
+}
+
+.form-container, .user-affirmations {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 750px;
+}
+
+.form-container {
+  background-color: white;  
+  padding: 1.5rem;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+
+  <h1> Quotes & Affirmations </h1>
+
+  <!-- Random Affirmation Card -->
+  <div class="quote-card" id="quoteCard">
+    Click the button to see something uplifting 
+  </div>
+  <button class="new-quote-btn" onclick="showRandomQuote()"> Show Me One!</button>
+
+  <!-- Add Your Own Affirmation -->
+  <div class="form-container">
+    <h2>Add Your Own Affirmation</h2>
+    <textarea id="userInput" placeholder="Write something positive..."></textarea><br>
+    <button class="add-btn" onclick="addAffirmation()">➕ Add Affirmation</button>
+  </div>
+
+  <!-- User-added Affirmations -->
+  <div class="user-affirmations" id="affirmationList"></div>
+
+  <script>
+    const quotes = [
+      "You are enough, just as you are. 💫",
+      "Small steps every day lead to big results. 🌱",
+      "You deserve all the love and success. 💖",
+      "Your mind is powerful, train it well. 🧠",
+      "Progress, not perfection. 🌸",
+      "You are growing, glowing, and going forward. 🌟",
+      "Peace begins with a deep breath. 🌬️",
+      "Keep showing up for yourself. 🌼",
+      "Gratitude turns what we have into enough. 💐",
+      "You are not behind — you're exactly where you need to be. ✨"
+    ];
+
+    // Load saved affirmations
+    document.addEventListener("DOMContentLoaded", () => {
+      showRandomQuote();
+      loadAffirmations();
+    });
+
+    function showRandomQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quoteCard").textContent = quotes[index];
+    }
+
+    function addAffirmation() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      const affirmation = {
+        text,
+        date: new Date().toLocaleDateString('en-GB', {
+          day: 'numeric', month: 'short', year: 'numeric'
+        })
+      };
+
+      const saved = JSON.parse(localStorage.getItem("userAffirmations") || "[]");
+      saved.unshift(affirmation); // add to top
+      localStorage.setItem("userAffirmations", JSON.stringify(saved));
+
+      input.value = "";
+      loadAffirmations();
+    }
+
+function loadAffirmations() {
+  const container = document.getElementById("affirmationList");
+  container.innerHTML = "";
+
+  const saved = JSON.parse(localStorage.getItem("userAffirmations") || "[]");
+
+  saved.forEach((entry, index) => {
+    const card = document.createElement("div");
+    card.className = "affirmation-card";
+    card.innerHTML = `
+      <div contenteditable="false" class="affirmation-text">${entry.text}</div>
+      <div class="affirmation-date">${entry.date}</div>
+      <button onclick="editAffirmation(${index}, this)">✏️ Edit</button>
+      <button onclick="deleteAffirmation(${index})">🗑️ Delete</button>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function deleteAffirmation(index) {
+  const saved = JSON.parse(localStorage.getItem("userAffirmations") || "[]");
+  saved.splice(index, 1);
+  localStorage.setItem("userAffirmations", JSON.stringify(saved));
+  loadAffirmations();
+}
+
+function editAffirmation(index, btn) {
+  const container = btn.parentElement;
+  const textDiv = container.querySelector(".affirmation-text");
+  const saved = JSON.parse(localStorage.getItem("userAffirmations") || "[]");
+
+  if (btn.textContent.includes("Edit")) {
+    textDiv.contentEditable = "true";
+    textDiv.focus();
+    btn.textContent = "💾 Save";
+  } else {
+    textDiv.contentEditable = "false";
+    saved[index].text = textDiv.textContent.trim();
+    localStorage.setItem("userAffirmations", JSON.stringify(saved));
+    loadAffirmations();
+  }
+}
+
+  </script>
+
+</body>
+</html>

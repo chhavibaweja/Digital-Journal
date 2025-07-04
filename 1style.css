@@ -1,0 +1,240 @@
+/* Apply background with pink color and white check pattern */
+body {
+  background-color: lightgoldenrodyellow;
+  background-image: linear-gradient(0deg, white 1px, transparent 1px),
+                    linear-gradient(90deg, white 1px, transparent 1px);
+  background-size: 40px 40px;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container */
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1 {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 48px;
+  color: #6a0572;
+  margin-bottom: 50px;
+}
+
+.section-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.section-links a {
+  font-family: 'Times New Roman', Times, serif;
+  text-decoration: none;
+  background-color: #ff758c;
+  color: black;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.section-links a:hover {
+  background-color: #3399ff;
+  transform: translateY(-3px);
+}
+
+button {
+  background-color: #ff758c;
+  color: black;
+  cursor: pointer;
+}
+
+/* Dark Theme Styles */
+body.dark-mode {
+  background-color: #2e2e2e;
+  color: #f8e0e0;
+}
+
+body.dark-mode button {
+  background-color: #ff5c8a;
+  color: white;
+}
+
+body.dark-mode h1, body.dark-mode .mood-memo {
+  color: #ffcccb; 
+}
+
+/* Date and Time Box */
+#date-time-box {
+  position: fixed;
+  top: 20px; 
+  left: 20px;        
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-family: 'Arial', sans-serif;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#current-date, #current-time {
+  font-size: 18px;
+  margin: 5px 0;
+  font-family: 'Arial', sans-serif;
+  color: #6a0572;
+}
+
+#password-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px); 
+  background-color: rgba(255, 255, 255, 0.4); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.password-box {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.password-box input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #6a0572;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.password-box button {
+  padding: 10px 20px;
+  background: #ff758c;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Button Styling */
+.theme-toggle, .change-password-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #6a0572;
+  color: white;
+  cursor: pointer;
+}
+
+.theme-toggle {
+  top: 20px;
+}
+
+.change-password-btn {
+  top: 60px;
+}
+
+#change-password-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  display: flex;            
+  align-items: center;        
+  justify-content: center; 
+}
+
+.modal-hidden {
+  display: none !important;
+}
+
+.modal-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.input-field {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.submit-btn, .cancel-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #6a0572;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Error and Success Message Styling */
+.error-msg {
+  color: red;
+  margin-top: 10px;
+  display: none;
+}
+
+.success-msg {
+  color: green;
+  margin-top: 10px;
+  display: none;
+}
+
+#welcome-message {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode #welcome-message {
+  background-color: #1e1e1e; 
+  color: #f1f1f1;     
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1); 
+}
+

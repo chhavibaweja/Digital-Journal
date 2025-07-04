@@ -1,0 +1,107 @@
+/* === Daily Reflection Section === */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8e0e0; 
+    margin: 0;
+    padding: 20px;
+}
+
+.daily-reflection-container {
+    max-width: 800px;
+    margin: 50px auto 0;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.daily-reflection-heading {
+    text-align: center;
+    color: #6a0572; 
+    margin-bottom: 20px;
+}
+
+.reflection-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+#prompt-select, #reflection-text {
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #6a0572;
+    border-radius: 10px;
+    resize: none;
+}
+
+#add-reflection {
+    padding: 10px;
+    background: #ff758c;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#add-reflection:hover {
+    background: #ff5c8a;
+}
+
+.reflection-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Card Style for Reflections */
+.reflection-card {
+    background: #f3f0ff; /* Light lavender tone */
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.reflection-card .reflection-date {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.reflection-card .reflection-prompt {
+    font-weight: bold;
+    color: #6a0572;
+    margin-bottom: 8px;
+}
+
+.reflection-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #6a0572;
+    transition: color 0.3s;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    color: #ff5c8a;
+}

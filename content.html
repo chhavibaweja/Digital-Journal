@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Content Tracker</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8e0e0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .content-tracker-container {
+      max-width: 1000px;
+      margin: 50px auto 0;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .content-tracker-heading {
+      text-align: center;
+      color: #6a0572;
+      margin-bottom: 20px;
+    }
+
+    .tracker-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #6a0572;
+      border-radius: 10px;
+    }
+
+    #add-content {
+      padding: 10px;
+      background: #ff758c;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #add-content:hover {
+      background: #ff5c8a;
+    }
+
+    .content-entries {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .content-card {
+      background: #f3f0ff;
+      padding: 15px;
+      border-radius: 18px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: calc(50% - 10px);
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .content-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #6a0572;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .notes {
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+
+    .edit-btn, .delete-btn {
+      margin-top: 10px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .edit-btn {
+      background-color: #ffd166;
+      color: #333;
+      margin-right: 10px;
+    }
+
+    .delete-btn {
+      background-color: #ef476f;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="content-tracker-heading">Content Tracker</h1>
+
+  <div class="content-tracker-container">
+    <form id="contentForm" class="tracker-form">
+      <input type="text" id="content-title" placeholder="Content Title" required />
+      <select id="content-type" required>
+        <option value="">Select Content Type</option>
+        <option value="Book">Book</option>
+        <option value="Article">Article</option>
+        <option value="Podcast">Podcast</option>
+        <option value="Video">Video</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="text" id="other-type" placeholder="Specify Type" style="display: none;" />
+      <input type="text" id="category" placeholder="Category (Optional)" />
+      <input type="date" id="date-consumed" required />
+      <input type="number" id="rating" min="1" max="5" placeholder="Rating (1-5)" required />
+      <textarea id="notes" placeholder="Notes (Optional)" rows="3"></textarea>
+      <button type="submit" id="add-content">Add Content</button>
+    </form>
+
+    <div class="content-entries" id="contentEntries"></div>
+  </div>
+
+ <script src="theme.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const contentForm = document.getElementById("contentForm");
+      const contentTypeSelect = document.getElementById("content-type");
+      const otherTypeInput = document.getElementById("other-type");
+      const contentEntriesDiv = document.getElementById("contentEntries");
+
+      let editingIndex = null;
+
+      contentTypeSelect.addEventListener("change", () => {
+        otherTypeInput.style.display = contentTypeSelect.value === "Other" ? "block" : "none";
+      });
+
+      function loadEntries() {
+        const saved = JSON.parse(localStorage.getItem("contentEntries") || "[]");
+        saved.forEach((entry, index) => displayEntry(entry, index));
+      }
+
+      function saveEntries(entries) {
+        localStorage.setItem("contentEntries", JSON.stringify(entries));
+      }
+
+      function displayEntry(entry, index) {
+        const card = document.createElement("div");
+        card.className = "content-card";
+
+        card.innerHTML = `
+          <div class="content-title">${entry.title}</div>
+          <div><strong>Type:</strong> ${entry.type}</div>
+          ${entry.category ? `<div><strong>Category:</strong> ${entry.category}</div>` : ""}
+          <div><strong>Date:</strong> ${entry.date}</div>
+          <div><strong>Rating:</strong> ${entry.rating}/5</div>
+          ${entry.notes ? `<div class="notes">"${entry.notes}"</div>` : ""}
+          <button class="edit-btn" data-index="${index}">Edit</button>
+          <button class="delete-btn" data-index="${index}">Delete</button>
+        `;
+
+        contentEntriesDiv.appendChild(card);
+      }
+
+      function refreshEntries() {
+        contentEntriesDiv.innerHTML = "";
+        const all = JSON.parse(localStorage.getItem("contentEntries") || "[]");
+        all.forEach((entry, index) => displayEntry(entry, index));
+      }
+
+      contentEntriesDiv.addEventListener("click", (e) => {
+        const target = e.target;
+        if (target.classList.contains("delete-btn")) {
+          const index = target.getAttribute("data-index");
+          const all = JSON.parse(localStorage.getItem("contentEntries") || "[]");
+          all.splice(index, 1);
+          saveEntries(all);
+          refreshEntries();
+        }
+
+        if (target.classList.contains("edit-btn")) {
+          const index = target.getAttribute("data-index");
+          const all = JSON.parse(localStorage.getItem("contentEntries") || "[]");
+          const entry = all[index];
+
+          document.getElementById("content-title").value = entry.title;
+          document.getElementById("content-type").value = ["Book", "Article", "Podcast", "Video"].includes(entry.type) ? entry.type : "Other";
+          otherTypeInput.style.display = entry.type === "Other" || !["Book", "Article", "Podcast", "Video"].includes(entry.type) ? "block" : "none";
+          document.getElementById("other-type").value = !["Book", "Article", "Podcast", "Video"].includes(entry.type) ? entry.type : "";
+          document.getElementById("category").value = entry.category;
+          document.getElementById("date-consumed").value = entry.date;
+          document.getElementById("rating").value = entry.rating;
+          document.getElementById("notes").value = entry.notes;
+
+          editingIndex = index;
+        }
+      });
+
+      contentForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById("content-title").value.trim();
+        const typeSelect = document.getElementById("content-type").value;
+        const otherType = document.getElementById("other-type").value.trim();
+        const category = document.getElementById("category").value.trim();
+        const date = document.getElementById("date-consumed").value;
+        const rating = document.getElementById("rating").value;
+        const notes = document.getElementById("notes").value.trim();
+        const finalType = typeSelect === "Other" ? otherType : typeSelect;
+
+        if (!title || !finalType || !date || !rating) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+
+        const entry = { title, type: finalType, category, date, rating, notes };
+        const all = JSON.parse(localStorage.getItem("contentEntries") || "[]");
+
+        if (editingIndex !== null) {
+          all[editingIndex] = entry;
+          editingIndex = null;
+        } else {
+          all.push(entry);
+        }
+
+        saveEntries(all);
+        refreshEntries();
+        contentForm.reset();
+        otherTypeInput.style.display = "none";
+      });
+
+      loadEntries();
+    });
+  </script>
+</body>
+</html>

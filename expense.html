@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="expense.css"> <!-- Ensure correct path -->
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+
+        <!-- Month Buttons -->
+        <div class="month-buttons">
+            <button class="month-btn" onclick="toggleMonth('January')">January</button>
+            <button class="month-btn" onclick="toggleMonth('February')">February</button>
+            <button class="month-btn" onclick="toggleMonth('March')">March</button>
+            <button class="month-btn" onclick="toggleMonth('April')">April</button>
+            <button class="month-btn" onclick="toggleMonth('May')">May</button>
+            <button class="month-btn" onclick="toggleMonth('June')">June</button>
+            <button class="month-btn" onclick="toggleMonth('July')">July</button>
+            <button class="month-btn" onclick="toggleMonth('August')">August</button>
+            <button class="month-btn" onclick="toggleMonth('September')">September</button>
+            <button class="month-btn" onclick="toggleMonth('October')">October</button>
+            <button class="month-btn" onclick="toggleMonth('November')">November</button>
+            <button class="month-btn" onclick="toggleMonth('December')">December</button>
+        </div>
+
+        <!-- January Expense Tracker -->
+        <div id="January" class="expense-box">
+            <h2>January</h2>
+            <form id="January-form" onsubmit="addOrEditExpense(event, 'January')">
+                <label for="January-category">Category:</label>
+                <select id="January-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="January-amount">Amount (₹):</label>
+                <input type="number" id="January-amount" required>
+
+                <label for="January-description">Description (Optional):</label>
+                <input type="text" id="January-description">
+
+                <label for="January-date">Date:</label>
+                <input type="date" id="January-date" required>
+
+                <button type="submit" id="January-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="January-expenses"></div>
+            <h3>Total: ₹<span id="January-total">0.00</span></h3>
+        </div>
+
+        <!-- Similar boxes for other months go here (February, March, etc.) -->
+        <!-- You can copy and paste the January box, changing the 'January' to the respective month name. -->
+
+        <!-- February Expense Tracker -->
+        <div id="February" class="expense-box">
+            <h2>February</h2>
+            <form id="February-form" onsubmit="addOrEditExpense(event, 'February')">
+                <label for="February-category">Category:</label>
+                <select id="February-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="February-amount">Amount (₹):</label>
+                <input type="number" id="February-amount" required>
+
+                <label for="February-description">Description (Optional):</label>
+                <input type="text" id="February-description">
+
+                <label for="February-date">Date:</label>
+                <input type="date" id="February-date" required>
+
+                <button type="submit" id="February-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="February-expenses"></div>
+            <h3>Total: ₹<span id="February-total">0.00</span></h3>
+        </div>
+
+        <!-- March Expense Tracker -->
+        <div id="March" class="expense-box">
+            <h2>March</h2>
+            <form id="March-form" onsubmit="addOrEditExpense(event, 'March')">
+                <label for="March-category">Category:</label>
+                <select id="March-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="March-amount">Amount (₹):</label>
+                <input type="number" id="March-amount" required>
+
+                <label for="March-description">Description (Optional):</label>
+                <input type="text" id="March-description">
+
+                <label for="March-date">Date:</label>
+                <input type="date" id="March-date" required>
+
+                <button type="submit" id="March-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="March-expenses"></div>
+            <h3>Total: ₹<span id="March-total">0.00</span></h3>
+        </div>
+
+        <!-- April Expense Tracker -->
+        <div id="April" class="expense-box">
+            <h2>April</h2>
+            <form id="April-form" onsubmit="addOrEditExpense(event, 'April')">
+                <label for="April-category">Category:</label>
+                <select id="April-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="April-amount">Amount (₹):</label>
+                <input type="number" id="April-amount" required>
+
+                <label for="April-description">Description (Optional):</label>
+                <input type="text" id="April-description">
+
+                <label for="April-date">Date:</label>
+                <input type="date" id="April-date" required>
+
+                <button type="submit" id="April-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="April-expenses"></div>
+            <h3>Total: ₹<span id="April-total">0.00</span></h3>
+        </div>
+
+        <!-- May Expense Tracker -->
+        <div id="May" class="expense-box">
+            <h2>May</h2>
+            <form id="May-form" onsubmit="addOrEditExpense(event, 'May')">
+                <label for="May-category">Category:</label>
+                <select id="May-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="May-amount">Amount (₹):</label>
+                <input type="number" id="May-amount" required>
+
+                <label for="May-description">Description (Optional):</label>
+                <input type="text" id="May-description">
+
+                <label for="May-date">Date:</label>
+                <input type="date" id="May-date" required>
+
+                <button type="submit" id="May-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="May-expenses"></div>
+            <h3>Total: ₹<span id="May-total">0.00</span></h3>
+        </div>
+
+        <!-- June Expense Tracker -->
+        <div id="June" class="expense-box">
+            <h2>June</h2>
+            <form id="June-form" onsubmit="addOrEditExpense(event, 'June')">
+                <label for="June-category">Category:</label>
+                <select id="June-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="June-amount">Amount (₹):</label>
+                <input type="number" id="June-amount" required>
+
+                <label for="June-description">Description (Optional):</label>
+                <input type="text" id="June-description">
+
+                <label for="June-date">Date:</label>
+                <input type="date" id="June-date" required>
+
+                <button type="submit" id="June-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="June-expenses"></div>
+            <h3>Total: ₹<span id="June-total">0.00</span></h3>
+        </div>
+
+        <!-- July Expense Tracker -->
+        <div id="July" class="expense-box">
+            <h2>July</h2>
+            <form id="July-form" onsubmit="addOrEditExpense(event, 'July')">
+                <label for="July-category">Category:</label>
+                <select id="July-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="July-amount">Amount (₹):</label>
+                <input type="number" id="July-amount" required>
+
+                <label for="July-description">Description (Optional):</label>
+                <input type="text" id="July-description">
+
+                <label for="July-date">Date:</label>
+                <input type="date" id="July-date" required>
+
+                <button type="submit" id="July-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="July-expenses"></div>
+            <h3>Total: ₹<span id="July-total">0.00</span></h3>
+        </div>
+
+        <!-- August Expense Tracker -->
+        <div id="August" class="expense-box">
+            <h2>August</h2>
+            <form id="August-form" onsubmit="addOrEditExpense(event, 'August')">
+                <label for="August-category">Category:</label>
+                <select id="August-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="August-amount">Amount (₹):</label>
+                <input type="number" id="August-amount" required>
+
+                <label for="August-description">Description (Optional):</label>
+                <input type="text" id="August-description">
+
+                <label for="August-date">Date:</label>
+                <input type="date" id="August-date" required>
+
+                <button type="submit" id="August-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="August-expenses"></div>
+            <h3>Total: ₹<span id="August-total">0.00</span></h3>
+        </div>
+
+        <!-- September Expense Tracker -->
+        <div id="September" class="expense-box">
+            <h2>September</h2>
+            <form id="September-form" onsubmit="addOrEditExpense(event, 'September')">
+                <label for="September-category">Category:</label>
+                <select id="September-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="September-amount">Amount (₹):</label>
+                <input type="number" id="September-amount" required>
+
+                <label for="September-description">Description (Optional):</label>
+                <input type="text" id="September-description">
+
+                <label for="September-date">Date:</label>
+                <input type="date" id="September-date" required>
+
+                <button type="submit" id="September-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="September-expenses"></div>
+            <h3>Total: ₹<span id="September-total">0.00</span></h3>
+        </div>
+
+        <!-- October Expense Tracker -->
+        <div id="October" class="expense-box">
+            <h2>October</h2>
+            <form id="October-form" onsubmit="addOrEditExpense(event, 'October')">
+                <label for="October-category">Category:</label>
+                <select id="October-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="October-amount">Amount (₹):</label>
+                <input type="number" id="October-amount" required>
+
+                <label for="October-description">Description (Optional):</label>
+                <input type="text" id="October-description">
+
+                <label for="October-date">Date:</label>
+                <input type="date" id="October-date" required>
+
+                <button type="submit" id="October-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="October-expenses"></div>
+            <h3>Total: ₹<span id="October-total">0.00</span></h3>
+        </div>
+
+        <!-- November Expense Tracker -->
+        <div id="November" class="expense-box">
+            <h2>November</h2>
+            <form id="November-form" onsubmit="addOrEditExpense(event, 'November')">
+                <label for="November-category">Category:</label>
+                <select id="November-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="November-amount">Amount (₹):</label>
+                <input type="number" id="November-amount" required>
+
+                <label for="November-description">Description (Optional):</label>
+                <input type="text" id="November-description">
+
+                <label for="November-date">Date:</label>
+                <input type="date" id="November-date" required>
+
+                <button type="submit" id="November-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="November-expenses"></div>
+            <h3>Total: ₹<span id="November-total">0.00</span></h3>
+        </div>
+
+        <!-- December Expense Tracker -->
+        <div id="December" class="expense-box">
+            <h2>December</h2>
+            <form id="December-form" onsubmit="addOrEditExpense(event, 'December')">
+                <label for="December-category">Category:</label>
+                <select id="December-category" required>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="December-amount">Amount (₹):</label>
+                <input type="number" id="December-amount" required>
+
+                <label for="December-description">Description (Optional):</label>
+                <input type="text" id="December-description">
+
+                <label for="December-date">Date:</label>
+                <input type="date" id="December-date" required>
+
+                <button type="submit" id="December-save-button" class="save-btn">Add Expense</button>
+            </form>
+
+            <div id="December-expenses"></div>
+            <h3>Total: ₹<span id="December-total">0.00</span></h3>
+        </div>
+
+    </div>
+
+    <script src="expense.js"></script> <!-- Ensure correct path -->
+</body>
+</html>

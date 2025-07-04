@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: #f8e0e0;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #ff6347;
+    margin-top: 50px;
+  }
+  
+  .month-section {
+    margin-top: 50px;
+  }
+  
+  .month-heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .grid-month {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 cells per row */
+    grid-gap: 5px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .grid-cell {
+    width: 40px;
+    height: 40px;
+    background-color: lightgrey;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .grid-cell:hover {
+    background-color: lightblue;
+  }
+  
+  .date {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  select {
+    margin: 10px 0;
+    padding: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #ff4500;
+  }
+  
+  /* Centering the Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Background dimming */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Content Styling */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px; /* Adjust width as per your need */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  select {
+    width: 100%;  /* Makes dropdown take full width of the modal */
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #ff4500;
+  }
+  
+  /* Style for button when hovering on grid cells */
+  .grid-cell:hover {
+    background-color: #87ceeb;
+  }
+  
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .grid-month {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 cells per row */
+    grid-gap: 5px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  

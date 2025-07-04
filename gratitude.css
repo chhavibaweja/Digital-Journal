@@ -1,0 +1,100 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8e0e0; 
+    margin: 0;
+    padding: 20px;
+}
+
+.gratitude-container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #6a0572;
+    margin-bottom: 20px;
+}
+
+.gratitude-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#gratitude-input {
+    padding: 15px;
+    border: 2px solid #6a0572;
+    border-radius: 10px;
+    resize: none;
+    font-size: 1rem;
+    min-height: 90px;
+}
+
+#add-gratitude {
+    padding: 10px;
+    background: #ff758c;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#add-gratitude:hover {
+    background: #ff5c8a;
+}
+
+#gratitude-cards {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr;  /* Only one card per row */
+    gap: 20px;
+}
+
+.gratitude-card {
+    background: #ffe3ec;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
+    height: 100px;  /* Make the card long enough to see content */
+    overflow: hidden;
+    word-wrap: break-word;  /* Allow text to break within the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.gratitude-date {
+    font-size: 0.8rem;
+    color: #888;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.card-buttons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn, .delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #6a0572;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    color: #ff5c8a;
+}

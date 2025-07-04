@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+  <div class="container">
+    <!-- To-Do List Heading -->
+    <h2 class="todo-heading">To-Do List</h2>
+
+    <!-- To-Do Form -->
+    <div class="todo-form">
+      <input type="text" id="taskInput" placeholder="Enter task" required>
+      <select id="categorySelect">
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Other">Other</option>
+      </select>
+      <button id="addTaskBtn">Add Task</button>
+    </div>
+
+    <!-- Task List -->
+    <ul id="todoList"></ul>
+  </div>
+
+  <script src="todo.js"></script>
+</body>
+</html>

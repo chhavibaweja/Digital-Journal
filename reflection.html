@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Reflection</title>
+    <link rel="stylesheet" href="reflection.css">
+</head>
+<body>
+
+    <!-- Heading is now outside the container -->
+    <h1 class="daily-reflection-heading">Daily Reflection</h1>
+
+    <div class="daily-reflection-container">
+        <div class="reflection-form">
+            <label for="prompt-select">Choose a prompt:</label>
+            <select id="prompt-select">
+                <option value="None">None</option>
+                <option value="What did I learn today?">What did I learn today?</option>
+                <option value="How did I feel today?">How did I feel today?</option>
+                <option value="What went well today?">What went well today?</option>
+                <option value="What could I improve tomorrow?">What could I improve tomorrow?</option>
+                <option value="One moment I want to remember from today is...">One moment I want to remember from today is...</option>
+            </select>
+
+            <textarea id="reflection-text" rows="5" placeholder="Write your reflection..."></textarea>
+            <button id="add-reflection">Add Reflection</button>
+        </div>
+
+        <div id="reflection-entries" class="reflection-entries">
+            <!-- Cards will be added here -->
+        </div>
+    </div>
+
+    <script src="reflection.js"></script>
+</body>
+</html>

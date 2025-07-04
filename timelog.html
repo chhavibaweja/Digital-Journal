@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Log</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8e0e0;
+      color: #4b3f3f;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #6a0572;
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    input, select, button {
+      padding: 10px;
+      border: 1px solid #6a0572;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      grid-column: span 2;
+      background-color: #ff758c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff5c8a;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #e6d6c2;
+      text-align: left;
+    }
+    .summary {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Time Log</h1>
+    <form id="logForm">
+      <input type="text" id="task" placeholder="Task Name" required />
+      <select id="category">
+        <option value="Study">Study</option>
+        <option value="Work">Work</option>
+        <option value="Break">Break</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="time" id="startTime" required />
+      <input type="time" id="endTime" required />
+      <button type="submit">Add Log</button>
+    </form>
+
+    <table id="logTable">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Category</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Duration (mins)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Entries go here -->
+      </tbody>
+    </table>
+
+    <div class="summary">
+      <h2>Summary (Total Minutes by Category)</h2>
+      <ul id="summaryList"></ul>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("logForm");
+    const tableBody = document.querySelector("#logTable tbody");
+    const summaryList = document.getElementById("summaryList");
+    const timeLogs = [];
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const task = document.getElementById("task").value;
+      const category = document.getElementById("category").value;
+      const start = document.getElementById("startTime").value;
+      const end = document.getElementById("endTime").value;
+
+      const startTime = new Date(`1970-01-01T${start}:00`);
+      const endTime = new Date(`1970-01-01T${end}:00`);
+      const diff = (endTime - startTime) / (1000 * 60);
+
+      if (diff > 0) {
+        timeLogs.push({ task, category, start, end, duration: diff });
+        renderTable();
+        renderSummary();
+        form.reset();
+      } else {
+        alert("End time must be after start time.");
+      }
+    });
+
+    function renderTable() {
+      tableBody.innerHTML = "";
+      timeLogs.forEach((log) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${log.task}</td>
+          <td>${log.category}</td>
+          <td>${log.start}</td>
+          <td>${log.end}</td>
+          <td>${log.duration}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function renderSummary() {
+      const summary = {};
+      timeLogs.forEach((log) => {
+        summary[log.category] = (summary[log.category] || 0) + log.duration;
+      });
+
+      summaryList.innerHTML = "";
+      for (const cat in summary) {
+        const li = document.createElement("li");
+        li.textContent = `${cat}: ${summary[cat]} mins`;
+        summaryList.appendChild(li);
+      }
+    }
+  </script>
+</body>
+</html>

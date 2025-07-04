@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digital Journal</title>
+  <link rel="stylesheet" href="1style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="password-overlay">
+  <div class="password-box">
+    <h2>Enter Password</h2>
+    <input type="password" id="password-input" placeholder="Enter password" />
+    <button id="submit-password">Submit</button>
+    <p id="password-error" style="color:red; display:none;">Incorrect password. Try again.</p>
+  </div>
+</div>
+
+  <div class="container">
+    <h1>Mood Memo 💌</h1>
+    <div class="section-links">
+      <a href="mood.html">Mood Tracker</a>
+      <a href="expense.html">Expense Tracker</a>
+      <a href="todo.html">To-do List</a>
+      <a href="gratitude.html">Gratitude Section</a>
+      <a href="reflection.html">Daily Reflection</a>
+      <a href="habit.html">Habit Tracker</a>
+      <a href="content.html">Content Tracker</a>
+      <a href="quotes.html" class="section-button">Quotes & Affirmations</a>
+
+    </div>
+  </div>
+
+<div id="date-time-box">
+    <span id="current-date"></span><br>
+    <span id="current-time"></span>
+</div>
+
+  <!-- Theme Toggle and Change Password Buttons -->
+<button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+<button id="changePasswordBtn" class="change-password-btn">Change Password</button>
+
+<!-- Change Password Modal -->
+<div id="change-password-modal" class="modal-hidden">
+  <div class="modal-box">
+    <h3>Change Password</h3>
+    <input type="password" id="old-password" placeholder="Current Password" class="input-field" />
+    <input type="password" id="new-password" placeholder="New Password" class="input-field" />
+    <br />
+    <button id="submitNewPassword" class="submit-btn">Save</button>
+    <button id="cancelChangePassword" class="cancel-btn">Cancel</button>
+    <p id="change-password-error" class="error-msg">Incorrect current password.</p>
+    <p id="change-password-success" class="success-msg">Password changed successfully!</p>
+  </div>
+</div>
+
+<div id="welcome-message">
+  <h1>Welcome!</h1>
+</div>
+
+ <script src="1script.js"></script>
+</body>
+</html>
